@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <title>Sabedoria diaria</title>
+    <link
+      rel="icon"
+      type="icone"
+      href="/mongeVet.svg"
+    />
+    <script src="https://kit.fontawesome.com/354216b200.js" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <a href="https://github.com/Laporttte"><i id="github" class="fa-brands fa-square-github"></i></a>
+      </div>
+        <div class="languageSelection">
+          <button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false" id="principalFlag">
+            <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1235px-Flag_of_the_United_States.svg.png" />
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" id="flagBR" href="#"><img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2560px-Flag_of_Brazil.svg.png"/></a>
+            </li>
+            <li>
+              <a class="dropdown-item" id="flagEN" href="#"><img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1235px-Flag_of_the_United_States.svg.png"/></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="themeSelection" onclick="switchTheme ()">
+            <i class="fa-regular fa-sun" id="day"></i>
+            <i class="fa-regular fa-moon " id="night"></i>
+        </div>
+
+    </header>
+
+    <main>
+      <div class="img">
+        <img class="monge" src="/mongeVet.svg"/>
+        <div class="monge sombra"></div>
+      </div>
+      <div class="txt">
+        <h3 id="txtId"></h3>
+      </div>
+      <button id="sd" type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-play"></i></button>
+      <audio src="/writing-on-keyboard-sound-effect-typing_TbOGgLuB.mp3" allow="autoplay"></audio>
+    </main>
+
+    <div class="fot"></div>
+    <footer>
+      <div id="footerDiv"><h5>This website was created for study using the Advice Slip API.</h5></div>
+    </footer>
+
+  </body>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      height: 100%;
+    }
+
+    body {
+      background-color: rgb(240, 199, 67); /*31, 54, 61*/
+      color: rgb(0, 0, 0);
+      height: 100%;
+    }
+
+    .flag {
+      width: 25px;
+      height: 20px;
+    }
+    header {
+        position: absolute;
+        right:1rem;
+        display: inline-flex;
+        padding-right: 15px;
+    }
+    .fa-sun {
+        position: relative;
+        padding-top: 0.7rem;
+        font-size: larger;
+    }
+    .fa-moon {
+        position: relative;
+        padding-top: 0.7rem;
+        padding-left: larger;
+        font-size: larger;
+        display: none;
+    }
+    main {
+      padding-top: 2em;
+      margin-bottom: 2rem;
+    }
+    .dropdown-item {
+      width: 20px !important;
+    }
+    .dropdown-menu {
+      --bs-dropdown-min-width: 3.2rem;
+      --bs-dropdown-padding-x: 0;
+      --bs-dropdown-padding-y: 0;
+      --bs-dropdown-item-padding-x: 0.8rem;
+    }
+    h2 {
+      text-align: center;
+      font-weight: 900;
+      font-size: 4rem;
+    }
+    .monge {
+      width: 20em;
+      height: auto;
+    }
+    .img {
+      text-align: center;
+      padding-top: 4em;
+      padding-bottom: 2em;
+
+    }
+    .monge { 
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-top: 5px;
+    }
+    
+      @keyframes floating {
+          0% { transform: translate(0,  0px); }
+          50%  { transform: translate(0, 8px); }
+          100%   { transform: translate(0, -0px); }   
+      }
+    .sombra {
+      background-color: black;
+      width: 200px;
+      height: 50px;
+      border-radius: 50%;
+      z-index: -99 !important;
+      opacity: 30%;
+      top:55% !important;
+      margin: 0 auto;
+      }
+    .txt {
+      padding-top: 50px;
+
+      text-align: center;
+    }
+    #sd {
+      display: none;
+      position: relative;
+      padding: 5px 10px 5px 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    } 
+    #sd:hover {
+      background-color:unset;
+      transition: 1s;
+      padding: 10px 15px 10px 15px;
+    }
+    footer {
+        bottom:0;
+        position:absolute; 
+        width: 100%;
+    }
+    #txtId {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    #footerDiv {
+      text-align: center;
+    }
+    .fa-square-github {
+      padding-top: 0.5rem;
+      font-size: 28px;
+      color:rgb(0, 0, 0);
+    }
+
+  </style>
+  <script>
+    document.getElementById("flagBR").addEventListener("click", function (event) {
+        console.log("Idioma mudou para portugues.");
+        document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2560px-Flag_of_Brazil.svg.png">`;
+      });
+
+    document.getElementById("flagEN").addEventListener("click", function (event) {
+        console.log("Idioma mudou para ingles.");
+        document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1235px-Flag_of_the_United_States.svg.png">`;
+      });
+
+    var visibilidade = true;
+    const body =  document.querySelector('body');
+    const github =  document.getElementById("github");
+
+      function switchTheme () {
+          if(visibilidade) {
+              console.log("Dia");
+              document.getElementById("day").style.display = 'none';
+              document.getElementById("night").style.display = 'block';
+              visibilidade = false;
+            body.style.background = 'rgb(31, 54, 61)';
+            body.style.color = 'rgb(255, 255, 255)';
+              body.style.transition = '2s';
+            github.style.color = 'white';
+              github.style.transition = '2s';
+          } 
+          else {
+              console.log("Noite");
+              document.getElementById("day").style.display = 'block';
+              document.getElementById("night").style.display = 'none';
+              visibilidade = true;
+            body.style.background = 'rgb(240, 199, 67)';
+            body.style.color = 'black';
+              body.style.transition = '2s';
+            github.style.color = 'black';
+              github.style.transition = '2s';
+
+          }
+      }
+  GetPhrase ();
+  var txt="";
+  var i=0;
+    function GetPhrase () {
+      fetch (`https://api.adviceslip.com/advice`)
+            .then(res => res.json())
+            .then(data => {
+                  console.log(data.slip.advice)
+                  txt = data.slip.advice;
+                  typingAnim();
+              }
+              )
+
+    }
+    const audio = document.querySelector('audio');
+    function typingAnim () {
+                    var promise = document.querySelector('audio').play();
+
+                      if (promise !== undefined) {
+                        promise.then(_ => {
+                          if(i<txt.length) {
+                          document.getElementById("txtId").innerHTML += txt.charAt(i);
+                          console.log("autoplay on")
+                            setTimeout(typingAnim,100);
+                            audio.volume = 0.2;
+                            audio.play();
+                            i++;
+                        } else {
+                          console.log("pausa")
+                          audio.pause();
+                        }
+                        }).catch(error => {
+                          document.getElementById("sd").style.display = "block";
+                          document.getElementById("sd").addEventListener("click", function (event) {
+                            document.getElementById("sd").style.display = "none";
+                                if(i<txt.length) {
+                                document.getElementById("txtId").innerHTML += txt.charAt(i);
+                                console.log("autoplay on")
+                                  setTimeout(typingAnim,100);
+                                  audio.volume = 0.2;
+                                  audio.play();
+                                  i++;
+                                  } else {
+                                    console.log("pausa")
+                                    audio.pause();
+                                  }
+                          })
+
+                        });
+                      }
+
+                    
+
+           
+    }
+  </script>
+</html>
