@@ -189,23 +189,62 @@
 
   </style>
   <script>
-    document.getElementById("flagBR").addEventListener("click", function (event) {
-        console.log("Idioma mudou para portugues.");
-        document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2560px-Flag_of_Brazil.svg.png">`;
-      });
-
-    document.getElementById("flagEN").addEventListener("click", function (event) {
-        console.log("Idioma mudou para ingles.");
-        document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1235px-Flag_of_the_United_States.svg.png">`;
-      });
-
     var visibilidade = true;
     const body =  document.querySelector('body');
     const github =  document.getElementById("github");
 
+    let config = '[]';
+        if (JSON.parse(localStorage.getItem('config')==null)) {
+          config = ( {
+              theme: "day",
+              language: "en"
+                  });
+        } else {
+          config = JSON.parse(localStorage.getItem('config'));
+        }
+    localStorage.setItem('config', JSON.stringify(config));
+    
+      if (config.language == "pt") {
+        changelanguage ("pt");
+      } else {
+        changelanguage("en");
+      }
+
+      function changelanguage (lang) {
+        if(lang == "pt") {
+          config.language = "pt";
+          localStorage.setItem('config', JSON.stringify(config));
+          console.log("Idioma mudou para portugues.");
+          document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2560px-Flag_of_Brazil.svg.png">`;
+        } else {
+          config.language = "en";
+          localStorage.setItem('config', JSON.stringify(config));
+          console.log("Idioma mudou para ingles.");
+          document.getElementById("principalFlag").innerHTML = `<img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1235px-Flag_of_the_United_States.svg.png">`;
+        }
+      }
+      
+      document.getElementById("flagBR").addEventListener("click", function (event) {
+        changelanguage("pt");
+      });
+
+      document.getElementById("flagEN").addEventListener("click", function (event) {
+        changelanguage("en");
+      });
+
+
+      if (config.theme == "night") {
+        visibilidade = true;
+        switchTheme ();
+      } else {
+        visibilidade = false;
+        switchTheme();
+      }
+
       function switchTheme () {
           if(visibilidade) {
-              console.log("Dia");
+            config.theme = "night";
+            localStorage.setItem('config', JSON.stringify(config));
               document.getElementById("day").style.display = 'none';
               document.getElementById("night").style.display = 'block';
               visibilidade = false;
@@ -216,7 +255,8 @@
               github.style.transition = '2s';
           } 
           else {
-              console.log("Noite");
+            config.theme = "day";
+            localStorage.setItem('config', JSON.stringify(config));
               document.getElementById("day").style.display = 'block';
               document.getElementById("night").style.display = 'none';
               visibilidade = true;
@@ -245,12 +285,10 @@
     const audio = document.querySelector('audio');
     function typingAnim () {
                     var promise = document.querySelector('audio').play();
-
-                      if (promise !== undefined) {
+                      if (promise != undefined) {
                         promise.then(_ => {
                           if(i<txt.length) {
                           document.getElementById("txtId").innerHTML += txt.charAt(i);
-                          console.log("autoplay on")
                             setTimeout(typingAnim,100);
                             audio.volume = 0.2;
                             audio.play();
@@ -260,15 +298,11 @@
                           audio.pause();
                         }
                         }).catch(error => {
-                          console.log('erro, então nao vai ter audio')
                                 if(i<txt.length) {
                                 document.getElementById("txtId").innerHTML += txt.charAt(i);
                                   setTimeout(typingAnim,100);
                                   i++;
-                                  } else {
-                                    console.log("")
                                   }
-                          
                         });
                       }
      
@@ -277,5 +311,39 @@
       location.reload()
     }
 
+
+
+
+
+/* 
+function Cadastrar() {
+    if (validinputUsername && validinputPassword && validinputUsername ) {
+        console.log("Os campos foram preenchidos corretamente.")
+        let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]');
+
+            listaUser.push( {
+                userCad: inputUsername.value,
+                passwordCad: inputPassword.value,
+                keyWordCad: inputKey.value,
+                nightmode: false,
+                profilePic: "base64String",
+                tasks: {
+                    taskItem: [ { title: "", description: "", active: true },
+                                { title: "", description: "", active: true }, 
+                                { title: "", description: "", active: false },
+                              ] 
+                       }
+            })
+            localStorage.setItem('listaUser', JSON.stringify(listaUser));
+            window.location.href = "signIn.html";
+    }
+*/
+
+
+
+
+
+
   </script>
 </html>
+
