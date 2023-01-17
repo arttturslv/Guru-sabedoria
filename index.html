@@ -260,17 +260,13 @@
                           audio.pause();
                         }
                         }).catch(error => {
-                          audio.muted;
-                          console.log('erro')
+                          console.log('erro, então nao vai ter audio')
                                 if(i<txt.length) {
                                 document.getElementById("txtId").innerHTML += txt.charAt(i);
-                                console.log("autoplay on")
                                   setTimeout(typingAnim,100);
-                                  audio.play();
                                   i++;
                                   } else {
-                                    console.log("pausa")
-                                    audio.pause();
+                                    console.log("")
                                   }
                           
                         });
