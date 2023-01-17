@@ -58,13 +58,12 @@
 
     <main>
       <div class="img">
-        <img class="monge" src="mongeVet.svg"/>
+        <img class="monge" onclick="reload()" src="mongeVet.svg"/>
         <div class="monge sombra"></div>
       </div>
       <div class="txt">
         <h3 id="txtId"></h3>
       </div>
-      <button id="sd" type="button" class="btn btn-outline-secondary"><i class="fa-solid fa-play"></i></button>
       <audio src="writing-on-keyboard-sound-effect-typing_TbOGgLuB.mp3" allow="autoplay"></audio>
     </main>
 
@@ -147,6 +146,7 @@
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     margin-top: 5px;
+    cursor: pointer;
     }
     
       @keyframes floating {
@@ -165,24 +165,10 @@
       margin: 0 auto;
       }
     .txt {
-      padding-top: 50px;
-
+      padding-bottom: 50px;
       text-align: center;
     }
-    #sd {
-      display: none;
-      position: relative;
-      padding: 5px 10px 5px 10px;
-      margin-top: 20px;
-      border-radius: 5px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    } 
-    #sd:hover {
-      background-color:unset;
-      transition: 1s;
-      padding: 10px 15px 10px 15px;
-    }
+
     footer {
         bottom:0;
         position:absolute; 
@@ -242,9 +228,10 @@
 
           }
       }
-  GetPhrase ();
-  var txt="";
-  var i=0;
+
+    GetPhrase ();
+    var txt="";
+    var i=0;
     function GetPhrase () {
       fetch (`https://api.adviceslip.com/advice`)
             .then(res => res.json())
@@ -252,10 +239,9 @@
                   console.log(data.slip.advice)
                   txt = data.slip.advice;
                   typingAnim();
-              }
-              )
-
+              })
     }
+
     const audio = document.querySelector('audio');
     function typingAnim () {
                     var promise = document.querySelector('audio').play();
@@ -274,9 +260,7 @@
                           audio.pause();
                         }
                         }).catch(error => {
-                          document.getElementById("sd").style.display = "block";
-                          document.getElementById("sd").addEventListener("click", function (event) {
-                            document.getElementById("sd").style.display = "none";
+                          console.log('erro')
                                 if(i<txt.length) {
                                 document.getElementById("txtId").innerHTML += txt.charAt(i);
                                 console.log("autoplay on")
@@ -288,14 +272,14 @@
                                     console.log("pausa")
                                     audio.pause();
                                   }
-                          })
-
+                          
                         });
                       }
-
-                    
-
-           
+     
     }
+    function reload() {
+      location.reload()
+    }
+
   </script>
 </html>
