@@ -187,8 +187,14 @@
       color:rgb(0, 0, 0);
     }
 
+
   </style>
   <script>
+    document.getElementById("principalFlag").addEventListener("click", function (){
+      alert("Functionality don't work yet, needs an API to translate.")
+    });
+
+
     var visibilidade = true;
     const body =  document.querySelector('body');
     const github =  document.getElementById("github");
@@ -310,38 +316,6 @@
     function reload() {
       location.reload()
     }
-
-
-
-
-
-/* 
-function Cadastrar() {
-    if (validinputUsername && validinputPassword && validinputUsername ) {
-        console.log("Os campos foram preenchidos corretamente.")
-        let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]');
-
-            listaUser.push( {
-                userCad: inputUsername.value,
-                passwordCad: inputPassword.value,
-                keyWordCad: inputKey.value,
-                nightmode: false,
-                profilePic: "base64String",
-                tasks: {
-                    taskItem: [ { title: "", description: "", active: true },
-                                { title: "", description: "", active: true }, 
-                                { title: "", description: "", active: false },
-                              ] 
-                       }
-            })
-            localStorage.setItem('listaUser', JSON.stringify(listaUser));
-            window.location.href = "signIn.html";
-    }
-*/
-
-
-
-
 
 
   </script>
