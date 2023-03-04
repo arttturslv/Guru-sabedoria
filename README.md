@@ -1,4 +1,5 @@
 # Guru-sabedoria
+link: https://arttturslv.github.io/Guru-sabedoria/
 A ideia era estudar sobre API's durante as ferias da PUC.
 
 Esse foi o esboço inicial:
